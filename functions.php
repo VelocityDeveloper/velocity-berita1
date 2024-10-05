@@ -38,10 +38,14 @@ foreach ($includes as $include) {
 if (!function_exists('justg_right_sidebar_check')) {
     function justg_right_sidebar_check()
     {
+        $sidebar_pos = velocitytheme_option('justg_sidebar_position', 'right');
         if (is_singular('fl-builder-template')) {
             return;
         }
         if (!is_active_sidebar('main-sidebar')) {
+            return;
+        }
+        if ('right' !== $sidebar_pos) {
             return;
         }
         echo '<div class="right-sidebar velocity-widget widget-area px-2 col-sm-12 col-md-4 order-3" id="right-sidebar" role="complementary">';
