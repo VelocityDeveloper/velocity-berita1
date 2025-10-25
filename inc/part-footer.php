@@ -21,7 +21,7 @@
     <div class="b-news">
         <div class="row m-0 align-items-center">
             <div class="col-sm-2 d-none d-sm-flex bn-title">
-                <div class="text-center w-100"><i class="fa fa-bolt" aria-hidden="true"></i> Breaking News</div>
+                <div class="text-center w-100"><i class="bi bi-lightning-charge" aria-hidden="true"></i> Breaking News</div>
             </div>
             <div class="col-12 col-sm-10 pe-0">
                 <?php $breakingnews = get_theme_mod('breaking_news', '');

@@ -11,211 +11,7 @@ add_action('after_setup_theme', 'velocitychild_theme_setup', 9);
 
 function velocitychild_theme_setup()
 {
-
-
-    if (class_exists('Kirki')) :
-
-        Kirki::add_panel('panel_berita', [
-            'priority'    => 10,
-            'title'       => esc_html__('Berita', 'justg'),
-            'description' => esc_html__('', 'justg'),
-        ]);
-
-        ///Section Color
-        Kirki::add_section('section_colorberita', [
-            'panel'    => 'panel_berita',
-            'title'    => __('Warna', 'justg'),
-            'priority' => 10,
-        ]);
-        Kirki::add_field('justg_config', [
-            'type'        => 'color',
-            'settings'    => 'color_theme',
-            'label'       => __('Color Theme', 'kirki'),
-            'description' => esc_html__('', 'kirki'),
-            'section'     => 'section_colorberita',
-            'default'     => '#740106',
-            'transport'   => 'auto',
-            'output'      => [
-                [
-                    'element'   => ':root',
-                    'property'  => '--color-theme',
-                ],
-                [
-                    'element'   => '.border-color-theme',
-                    'property'  => '--bs-border-color',
-                ]
-            ],
-        ]);
-
-        ///Section Iklan
-        Kirki::add_section('section_iklanberita', [
-            'panel'    => 'panel_berita',
-            'title'    => __('Iklan', 'justg'),
-            'priority' => 10,
-        ]);
-        $fieldiklan = [
-            'iklan_header'  => [
-                'label'            => 'Iklan Header',
-                'description'    => 'Iklan Halaman Depan 728x90',
-            ],
-            'iklan_footer'  => [
-                'label'            => 'Iklan Footer',
-                'description'    => 'Iklan Footer 600x80',
-            ],
-            'iklan_content'  => [
-                'label'            => 'Iklan Single',
-                'description'    => 'Iklan Single post 468x60',
-            ],
-            'iklan_content_2'  => [
-                'label'            => 'Iklan Single 2',
-                'description'    => 'Iklan Single post 160x600',
-            ],
-        ];
-        foreach ($fieldiklan as $idfield => $datafield) {
-            Kirki::add_field('justg_config', [
-                'type'        => 'image',
-                'settings'    => 'image_' . $idfield,
-                'label'       => esc_html__('Gambar ' . $datafield['label'], 'kirki'),
-                'description' => esc_html__($datafield['description'], 'kirki'),
-                'section'     => 'section_iklanberita',
-                'default'     => '',
-                'partial_refresh'    => [
-                    'partial_' . $idfield => [
-                        'selector'        => '.part_' . $idfield,
-                        'render_callback' => '__return_false'
-                    ]
-                ],
-            ]);
-            Kirki::add_field('justg_config', [
-                'type'     => 'link',
-                'settings' => 'link_' . $idfield,
-                'label'    => __('Link ' . $datafield['label'], 'kirki'),
-                'section'  => 'section_iklanberita',
-                'default'  => '',
-                'priority' => 10,
-            ]);
-        }
-
-        ///Section Sosmed
-        Kirki::add_section('section_sosmedberita', [
-            'panel'    => 'panel_berita',
-            'title'    => __('Sosial Media', 'justg'),
-            'priority' => 10,
-        ]);
-        $fieldsosmed = [
-            'facebook'  => [
-                'label'    => 'Facebook',
-            ],
-            'twitter'  => [
-                'label'    => 'Twitter',
-            ],
-            'instagram'  => [
-                'label'    => 'Instagram',
-            ],
-            'youtube'  => [
-                'label'    => 'Youtube',
-            ]
-        ];
-        foreach ($fieldsosmed as $idfield => $datafield) {
-            Kirki::add_field('justg_config', [
-                'type'     => 'link',
-                'settings' => 'link_sosmed_' . $idfield,
-                'label'    => __('Link ' . $datafield['label'], 'kirki'),
-                'section'  => 'section_sosmedberita',
-                'default'  => 'https://' . $idfield . '.com/',
-                'priority' => 10,
-            ]);
-        }
-
-        ///Section Home
-        Kirki::add_section('section_homeberita', [
-            'panel'    => 'panel_berita',
-            'title'    => __('Home', 'justg'),
-            'priority' => 10,
-        ]);
-
-        ///field set posts
-        $fieldposts = [
-            'posts_highlight'  => [
-                'label'        => 'Posts Highlight',
-                'section'    => 'section_homeberita',
-                'title'        => 'Recent Posts',
-            ],
-            'posts_home_1'  => [
-                'label'        => 'Posts Home 1',
-                'section'    => 'section_homeberita',
-                'title'        => 'Recent Posts',
-            ],
-            'posts_home_2'  => [
-                'label'        => 'Posts Home 2',
-                'section'    => 'section_homeberita',
-                'title'        => 'Recent Posts',
-            ],
-            'posts_home_3'  => [
-                'label'        => 'Posts Home 3',
-                'section'    => 'section_homeberita',
-                'title'        => 'Recent Posts',
-            ],
-            'posts_home_4'  => [
-                'label'        => 'Posts Home 4',
-                'section'    => 'section_homeberita',
-                'title'        => 'Recent Posts',
-            ],
-            'posts_home_5'  => [
-                'label'        => 'Posts Home 5',
-                'section'    => 'section_homeberita',
-                'title'        => 'Recent Posts',
-            ],
-        ];
-        $categories = Kirki_Helper::get_terms('category');
-        $categories['disable'] = 'Nonaktifkan';
-        unset($categories[1]);
-        foreach ($fieldposts as $idfield => $datafield) {
-            if (isset($datafield['title'])) {
-                Kirki::add_field('justg_config', [
-                    'type'     => 'text',
-                    'settings' => 'title_' . $idfield,
-                    'label'    => esc_html__('Judul ' . $datafield['label'], 'kirki'),
-                    'section'  => $datafield['section'],
-                    'default'  => esc_html__($datafield['title'], 'kirki'),
-                    'priority' => 10,
-                ]);
-            }
-            Kirki::add_field('justg_config', [
-                'type'        => 'select',
-                'settings'    => 'cat_' . $idfield,
-                'label'       => esc_html__('Kategori ' . $datafield['label'], 'kirki'),
-                'section'     => $datafield['section'],
-                'default'     => '',
-                'placeholder' => esc_html__('Pilih kategori', 'kirki'),
-                'priority'    => 10,
-                'multiple'    => 1,
-                'choices'     => $categories,
-                'partial_refresh'    => [
-                    'partial_' . $idfield => [
-                        'selector'        => '.part_' . $idfield,
-                        'render_callback' => '__return_false'
-                    ]
-                ],
-            ]);
-            if (isset($datafield['sortby']) && $datafield['sortby'] == true) {
-                Kirki::add_field('justg_config', [
-                    'type'     => 'select',
-                    'settings' => 'sortby_' . $idfield,
-                    'label'    => esc_html__('Urutkan ' . $datafield['label'] . ' berdasarkan', 'kirki'),
-                    'section'  => $datafield['section'],
-                    'default'  => 'date',
-                    'priority' => 10,
-                    'multiple' => 1,
-                    'choices'  => [
-                        'date'    => esc_html__('Tanggal', 'kirki'),
-                        'view'    => esc_html__('Tayangan', 'kirki'),
-                    ],
-                ]);
-            }
-        }
-
-    endif;
+    add_action('customize_register', 'velocitychild_customize_register', 20);
 
     register_nav_menus(
         array(
@@ -229,6 +25,353 @@ function velocitychild_theme_setup()
     remove_action('justg_do_footer', 'justg_the_footer_content');
     remove_action('justg_do_footer', 'justg_the_footer_close');
 }
+
+function velocitychild_customize_register($wp_customize)
+{
+    $wp_customize->remove_section('velocity_section_colors');
+
+    $wp_customize->add_panel(
+        'panel_berita',
+        array(
+            'priority'    => 10,
+            'title'       => __('Berita', 'justg'),
+            'description' => '',
+        )
+    );
+
+    $wp_customize->add_section(
+        'section_colorberita',
+        array(
+            'panel'    => 'panel_berita',
+            'title'    => __('Warna', 'justg'),
+            'priority' => 10,
+        )
+    );
+
+    $wp_customize->add_setting(
+        'color_theme',
+        array(
+            'default'           => '#740106',
+            'sanitize_callback' => 'sanitize_hex_color',
+        )
+    );
+
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'color_theme',
+            array(
+                'label'   => __('Color Theme', 'justg'),
+                'section' => 'section_colorberita',
+            )
+        )
+    );
+
+    $wp_customize->add_section(
+        'section_iklanberita',
+        array(
+            'panel'    => 'panel_berita',
+            'title'    => __('Iklan', 'justg'),
+            'priority' => 20,
+        )
+    );
+
+    $ads_fields = array(
+        'iklan_header'   => array(
+            'label'       => __('Iklan Header', 'justg'),
+            'description' => __('Iklan Halaman Depan 728x90', 'justg'),
+        ),
+        'iklan_footer'   => array(
+            'label'       => __('Iklan Footer', 'justg'),
+            'description' => __('Iklan Footer 600x80', 'justg'),
+        ),
+        'iklan_content'  => array(
+            'label'       => __('Iklan Single', 'justg'),
+            'description' => __('Iklan Single post 468x60', 'justg'),
+        ),
+        'iklan_content_2' => array(
+            'label'       => __('Iklan Single 2', 'justg'),
+            'description' => __('Iklan Single post 160x600', 'justg'),
+        ),
+    );
+
+    foreach ($ads_fields as $id => $data) {
+        $image_setting = 'image_' . $id;
+        $link_setting  = 'link_' . $id;
+
+        $wp_customize->add_setting(
+            $image_setting,
+            array(
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw',
+            )
+        );
+
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control(
+                $wp_customize,
+                $image_setting,
+                array(
+                    'label'       => sprintf(__('Gambar %s', 'justg'), $data['label']),
+                    'description' => $data['description'],
+                    'section'     => 'section_iklanberita',
+                )
+            )
+        );
+
+        $wp_customize->add_setting(
+            $link_setting,
+            array(
+                'default'           => '',
+                'sanitize_callback' => 'velocitychild_sanitize_url',
+            )
+        );
+
+        $wp_customize->add_control(
+            $link_setting,
+            array(
+                'label'   => sprintf(__('Link %s', 'justg'), $data['label']),
+                'section' => 'section_iklanberita',
+                'type'    => 'url',
+            )
+        );
+    }
+
+    $wp_customize->add_section(
+        'section_sosmedberita',
+        array(
+            'panel'    => 'panel_berita',
+            'title'    => __('Sosial Media', 'justg'),
+            'priority' => 30,
+        )
+    );
+
+    $social_fields = array(
+        'facebook'  => __('Facebook', 'justg'),
+        'twitter'   => __('Twitter', 'justg'),
+        'instagram' => __('Instagram', 'justg'),
+        'youtube'   => __('Youtube', 'justg'),
+    );
+
+    foreach ($social_fields as $id => $label) {
+        $setting = 'link_sosmed_' . $id;
+
+        $wp_customize->add_setting(
+            $setting,
+            array(
+                'default'           => 'https://' . $id . '.com/',
+                'sanitize_callback' => 'velocitychild_sanitize_url',
+            )
+        );
+
+        $wp_customize->add_control(
+            $setting,
+            array(
+                'label'   => sprintf(__('Link %s', 'justg'), $label),
+                'section' => 'section_sosmedberita',
+                'type'    => 'url',
+            )
+        );
+    }
+
+    $wp_customize->add_section(
+        'section_homeberita',
+        array(
+            'panel'    => 'panel_berita',
+            'title'    => __('Home', 'justg'),
+            'priority' => 40,
+        )
+    );
+
+    $posts_fields = array(
+        'posts_highlight' => array(
+            'label'   => __('Posts Highlight', 'justg'),
+            'section' => 'section_homeberita',
+            'title'   => __('Recent Posts', 'justg'),
+        ),
+        'posts_home_1'    => array(
+            'label'   => __('Posts Home 1', 'justg'),
+            'section' => 'section_homeberita',
+            'title'   => __('Recent Posts', 'justg'),
+        ),
+        'posts_home_2'    => array(
+            'label'   => __('Posts Home 2', 'justg'),
+            'section' => 'section_homeberita',
+            'title'   => __('Recent Posts', 'justg'),
+        ),
+        'posts_home_3'    => array(
+            'label'   => __('Posts Home 3', 'justg'),
+            'section' => 'section_homeberita',
+            'title'   => __('Recent Posts', 'justg'),
+        ),
+        'posts_home_4'    => array(
+            'label'   => __('Posts Home 4', 'justg'),
+            'section' => 'section_homeberita',
+            'title'   => __('Recent Posts', 'justg'),
+        ),
+        'posts_home_5'    => array(
+            'label'   => __('Posts Home 5', 'justg'),
+            'section' => 'section_homeberita',
+            'title'   => __('Recent Posts', 'justg'),
+        ),
+    );
+
+    $category_choices = velocitychild_get_category_choices();
+    $select_choices   = array('' => __('Pilih kategori', 'justg')) + $category_choices;
+
+    foreach ($posts_fields as $id => $config) {
+        if (!empty($config['title'])) {
+            $title_setting = 'title_' . $id;
+
+            $wp_customize->add_setting(
+                $title_setting,
+                array(
+                    'default'           => $config['title'],
+                    'sanitize_callback' => 'sanitize_text_field',
+                )
+            );
+
+            $wp_customize->add_control(
+                $title_setting,
+                array(
+                    'label'   => sprintf(__('Judul %s', 'justg'), $config['label']),
+                    'section' => $config['section'],
+                    'type'    => 'text',
+                )
+            );
+        }
+
+        $category_setting = 'cat_' . $id;
+
+        $wp_customize->add_setting(
+            $category_setting,
+            array(
+                'default'           => '',
+                'sanitize_callback' => 'velocitychild_sanitize_category_select',
+            )
+        );
+
+        $wp_customize->add_control(
+            $category_setting,
+            array(
+                'label'   => sprintf(__('Kategori %s', 'justg'), $config['label']),
+                'section' => $config['section'],
+                'type'    => 'select',
+                'choices' => $select_choices,
+            )
+        );
+
+        if (!empty($config['sortby'])) {
+            $sort_setting = 'sortby_' . $id;
+
+            $wp_customize->add_setting(
+                $sort_setting,
+                array(
+                    'default'           => 'date',
+                    'sanitize_callback' => 'velocitychild_sanitize_sort_option',
+                )
+            );
+
+            $wp_customize->add_control(
+                $sort_setting,
+                array(
+                    'label'   => sprintf(__('Urutkan %s berdasarkan', 'justg'), $config['label']),
+                    'section' => $config['section'],
+                    'type'    => 'select',
+                    'choices' => array(
+                        'date' => __('Tanggal', 'justg'),
+                        'view' => __('Tayangan', 'justg'),
+                    ),
+                )
+            );
+        }
+    }
+}
+
+function velocitychild_get_category_choices()
+{
+    $choices = array();
+
+    $terms = get_terms(
+        array(
+            'taxonomy'   => 'category',
+            'hide_empty' => false,
+        )
+    );
+
+    if (!is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            if ((int) $term->term_id === 1) {
+                continue;
+            }
+
+            $choices[$term->term_id] = $term->name;
+        }
+    }
+
+    $choices['disable'] = __('Nonaktifkan', 'justg');
+
+    return $choices;
+}
+
+function velocitychild_sanitize_category_select($value)
+{
+    if (is_array($value)) {
+        $value = reset($value);
+    }
+
+    if ('disable' === $value) {
+        return 'disable';
+    }
+
+    $value = absint($value);
+
+    return $value > 0 ? $value : '';
+}
+
+function velocitychild_sanitize_sort_option($value)
+{
+    $allowed = array('date', 'view');
+
+    return in_array($value, $allowed, true) ? $value : 'date';
+}
+
+function velocitychild_sanitize_url($url)
+{
+    $url = trim($url);
+
+    return $url ? esc_url_raw($url) : '';
+}
+
+add_filter('justg_theme_default_settings', 'velocitychild_override_default_settings', 20);
+function velocitychild_override_default_settings($defaults)
+{
+    if (!isset($defaults['background_website_color']) || '#ffffff' === $defaults['background_website_color']) {
+        $defaults['background_website_color'] = '#d6d6d6';
+    }
+
+    return $defaults;
+}
+
+function velocitychild_apply_customizer_styles()
+{
+    $color = velocitytheme_option('color_theme', '#740106');
+
+    if (function_exists('velocitytheme_sanitize_color')) {
+        $sanitized = velocitytheme_sanitize_color($color);
+    } else {
+        $sanitized = sanitize_hex_color($color);
+    }
+
+    if (!$sanitized) {
+        $sanitized = '#740106';
+    }
+
+    $css = sprintf(':root{--color-theme:%1$s;}.border-color-theme{--bs-border-color:%1$s;}', $sanitized);
+
+    wp_add_inline_style('custom-style', $css);
+}
+add_action('wp_enqueue_scripts', 'velocitychild_apply_customizer_styles', 20);
 
 ///add action builder part
 add_action('justg_header', 'justg_header_berita');

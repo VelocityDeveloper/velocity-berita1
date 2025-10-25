@@ -109,7 +109,7 @@ function module_vdposts($args = null, $style = null)
                     break;
                 case 'posts4':
                     echo '<a class="d-flex w-100 border-bottom pb-1 mb-1" href="' . get_the_permalink() . '">';
-                    echo '<i class="fa fa-file-text-o mt-1 me-2"></i>';
+                    echo '<i class="bi bi-file-earmark-text mt-1 me-2" aria-hidden="true"></i>';
                     echo '<span>' . get_the_title() . '</span>';
                     echo '</a>';
                 ?>

@@ -69,7 +69,7 @@ $format     = get_post_format() ?: 'standard';
                                 </div>
                                 <?php the_content(); ?>
                                 <div class="pb-3">
-                                    <?php edit_post_link(__('Edit', 'justg'), '<span class="edit-link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> ', '</span>'); ?>
+                                    <?php edit_post_link(__('Edit', 'justg'), '<span class="edit-link"><i class="bi bi-pencil-square" aria-hidden="true"></i> ', '</span>'); ?>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -115,11 +115,11 @@ $format     = get_post_format() ?: 'standard';
                                 <?php
                                 $prev_post = get_adjacent_post(false, '', true);
                                 if (!empty($prev_post)) {
-                                    echo '<a class="text-start" href="' . get_permalink($prev_post->ID) . '" class="btn btn-sm" title="' . $prev_post->post_title . '"><i class="fa fa-angle-left me-2" aria-hidden="true"></i>' . $prev_post->post_title . '</a>';
+                                    echo '<a class="text-start" href="' . get_permalink($prev_post->ID) . '" class="btn btn-sm" title="' . $prev_post->post_title . '"><i class="bi bi-chevron-left me-2" aria-hidden="true"></i>' . $prev_post->post_title . '</a>';
                                 }
                                 $next_post = get_adjacent_post(false, '', false);
                                 if (!empty($next_post)) {
-                                    echo '<a class="text-end" href="' . get_permalink($next_post->ID) . '" class="btn btn-sm" title="' . $next_post->post_title . '">' . $next_post->post_title . '<i class="fa fa-angle-right ms-2" aria-hidden="true"></i></a>';
+                                    echo '<a class="text-end" href="' . get_permalink($next_post->ID) . '" class="btn btn-sm" title="' . $next_post->post_title . '">' . $next_post->post_title . '<i class="bi bi-chevron-right ms-2" aria-hidden="true"></i></a>';
                                 }
                                 ?>
                             </div>

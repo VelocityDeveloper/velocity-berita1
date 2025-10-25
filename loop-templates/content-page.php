@@ -37,7 +37,7 @@ defined('ABSPATH') || exit;
 
     <footer class="entry-footer">
         <div class="pb-3">
-            <?php edit_post_link(__('Edit', 'justg'), '<span class="edit-link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> ', '</span>'); ?>
+            <?php edit_post_link(__('Edit', 'justg'), '<span class="edit-link"><i class="bi bi-pencil-square" aria-hidden="true"></i> ', '</span>'); ?>
         </div>
     </footer><!-- .entry-footer -->
 

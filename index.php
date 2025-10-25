@@ -153,9 +153,7 @@ $container = velocitytheme_option('justg_container_type', 'container');
             <!-- Do the left sidebar check -->
             <?php do_action('justg_before_content'); ?>
 
-            <div class="col-md mb-3">
-
-                <main class="site-main col order-2" id="main">
+            <main class="site-main col order-2 mb-3" id="main">
 
                     <?php
                     $post1_title    = velocitytheme_option('title_posts_home_1', 'Recent Posts');
@@ -166,7 +164,7 @@ $container = velocitytheme_option('justg_container_type', 'container');
                             <span class="bg-color-theme pt-2 pb-1 px-3 text-uppercase text-white d-inline-block"><?php echo $post1_title; ?></span>
                             <?php if ($post1_cat && $post1_cat !== 'disable') : ?>
                                 <a class="btn bg-color-theme text-white btn-sm rounded-0 mb-1" href="<?php echo get_tag_link($post1_cat); ?>">
-                                    More <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                    More <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
                                 </a>
                             <?php endif; ?>
                         </h6>
@@ -207,7 +205,7 @@ $container = velocitytheme_option('justg_container_type', 'container');
                             <span class="bg-color-theme pt-2 pb-1 px-3 text-uppercase text-white d-inline-block"><?php echo $post2_title; ?></span>
                             <?php if ($post2_cat && $post2_cat !== 'disable') : ?>
                                 <a class="btn bg-color-theme text-white btn-sm rounded-0 mb-1" href="<?php echo get_tag_link($post2_cat); ?>">
-                                    More <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                    More <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
                                 </a>
                             <?php endif; ?>
                         </h6>
@@ -247,7 +245,7 @@ $container = velocitytheme_option('justg_container_type', 'container');
                                 <span class="bg-color-theme pt-2 pb-1 px-3 text-uppercase text-white d-inline-block"><?php echo $post3_title; ?></span>
                                 <?php if ($post3_cat && $post3_cat !== 'disable') : ?>
                                     <a class="btn bg-color-theme text-white btn-sm rounded-0 mb-1" href="<?php echo get_tag_link($post3_cat); ?>">
-                                        More <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                        More <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
                                     </a>
                                 <?php endif; ?>
                             </h6>
@@ -320,7 +318,7 @@ $container = velocitytheme_option('justg_container_type', 'container');
                                 <span class="bg-color-theme pt-2 pb-1 px-3 text-uppercase text-white d-inline-block"><?php echo $post4_title; ?></span>
                                 <?php if ($post4_cat && $post4_cat !== 'disable') : ?>
                                     <a class="btn bg-color-theme text-white btn-sm rounded-0 mb-1" href="<?php echo get_tag_link($post4_cat); ?>">
-                                        More <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                        More <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
                                     </a>
                                 <?php endif; ?>
                             </h6>
@@ -350,7 +348,7 @@ $container = velocitytheme_option('justg_container_type', 'container');
                                 <span class="bg-color-theme pt-2 pb-1 px-3 text-uppercase text-white d-inline-block"><?php echo $post5_title; ?></span>
                                 <?php if ($post5_cat && $post5_cat !== 'disable') : ?>
                                     <a class="btn bg-color-theme text-white btn-sm rounded-0 mb-1" href="<?php echo get_tag_link($post5_cat); ?>">
-                                        More <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                        More <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
                                     </a>
                                 <?php endif; ?>
                             </h6>
@@ -395,8 +393,7 @@ $container = velocitytheme_option('justg_container_type', 'container');
                         </div>
                     </div>
 
-                </main><!-- #main -->
-            </div>
+            </main><!-- #main -->
             <!-- Do the right sidebar check. -->
             <?php do_action('justg_after_content'); ?>
         </div><!-- .row -->

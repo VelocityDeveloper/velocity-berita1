@@ -2,6 +2,7 @@
     --color-theme: #00A3A3;
     --bs-body-font-size: .85rem !important;
     --bs-body-font-family: Arial, Helvetica, sans-serif !important;
+    --bs-secondary: #d6d6d6;
 }
 :root[data-bs-theme=light] {
     --bs-link-color: #333333 !important;
@@ -9,7 +10,7 @@
 }
 :root[data-bs-theme=light] body {
     color: var(--bs-dark);
-    background-color: var(--bs-secondary);
+    background-color: #d6d6d6;
 }
 :root[data-bs-theme=light] .navbar-dark {
     --bs-navbar-color: rgb(255 255 255);
@@ -128,8 +129,8 @@ h1, h2, h3, h4, h5, h6,
 }
 .widget ul{padding: 0 !important;}
 .widget li::after {
-    content: '\f0f6';
-    font-family: 'FontAwesome';
+    content: '\f285';
+    font-family: 'bootstrap-icons';
     position: absolute;
     left: 0;
     bottom: 0;
@@ -149,7 +150,7 @@ h1, h2, h3, h4, h5, h6,
     border: 0 !important;
     color: #ffffff;
 }
-#carouselHome .carousel-indicators [data-bs-target] {    
+#carouselHome .carousel-indicators [data-bs-target] {
     width: 0.65rem;
     height: 0.65rem;
     border-radius: 100%;
@@ -175,6 +176,9 @@ h1, h2, h3, h4, h5, h6,
     background-color: #eeebeb;
     padding: 8px 10px;
     font-size: 17px;
+    cursor: pointer;
+}
+.slick-arrow {
     cursor: pointer;
 }
 .breaking-news .prev-arrow {
@@ -207,7 +211,7 @@ h1, h2, h3, h4, h5, h6,
 .module-vdposts-carousel .slick-arrow {
     position: absolute;
     z-index: 99;
-    top: 50%;
+    top: 28%;
 }
 .module-vdposts-carousel .prev-arrow {left: 0;}
 .module-vdposts-carousel .next-arrow {right: 0;}
@@ -228,6 +232,14 @@ h1, h2, h3, h4, h5, h6,
     -o-transition: all 400ms linear;
     transition: all 400ms linear;
 }
+.velocity-list-stats li::before,
+.velocity-list-stats li::after {
+    display: none !important
+}
+
+
+
+
 @media(min-width: 768px) {
     .right-sidebar {
         max-width: 30%;
@@ -259,9 +271,10 @@ h1, h2, h3, h4, h5, h6,
     .menu-header #main-menu > li:not(:first-child) > a {
         border-left: 1px solid rgb(255 255 255 / 8%);
     }
+    .home .wrapper .velocity-widget {
+        max-width: 30%;
+    }
 }
-
-@media(min-width: 1000px) {}
 
 @media(max-width: 768px) {
     #primary {padding: 0;}

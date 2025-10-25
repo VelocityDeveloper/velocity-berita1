@@ -1,7 +1,7 @@
 <div class=" first-head-part bg-white">
     <div class="row m-0 align-items-center">
         <div class="col-sm-2 d-none d-sm-flex bn-title">
-            <div class="text-center w-100"><i class="fa fa-bolt" aria-hidden="true"></i> Breaking News</div>
+            <div class="text-center w-100"><i class="bi bi-lightning-charge" aria-hidden="true"></i> Breaking News</div>
         </div>
         <div class="col-12 col-sm-10 pe-0">
             <?php $breakingnews = get_theme_mod('breaking_news', '');
@@ -121,7 +121,7 @@
                         <form action="" method="get" id="search" class="d-flex overflow-hidden">
                             <input type="text" name="s" placeholder="Search" class="form-control-sm bg-transparent border-0 rounded-0 py-0">
                             <button type="submit" class="btn btn-link text-secondary py-0 px-2">
-                                <i class="fa fa-search"></i>
+                                <i class="bi bi-search" aria-hidden="true"></i>
                             </button>
                         </form>
                     </div>
