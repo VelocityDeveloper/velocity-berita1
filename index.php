@@ -186,7 +186,7 @@ $container = velocitytheme_option('justg_container_type', 'container');
                                     $post1_args = array(
                                         'post_type' => 'post',
                                         'cat'       => $post1_cat,
-                                        'posts_per_page' => 5,
+                                        'posts_per_page' => 4,
                                         'offset' => 1,
                                     );
                                     module_vdposts($post1_args, 'posts2');
